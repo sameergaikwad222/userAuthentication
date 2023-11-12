@@ -1,0 +1,27 @@
+{
+  "name": "userauthentication",
+  "version": "1.0.0",
+  "description": "This is for User Authentication and authorization",
+  "main": "index.js",
+  "scripts": {
+    "start": "fastify start -p 3000 -l info server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sameergaikwad222/userAuthentication.git"
+  },
+  "author": "Sameer Gaikwad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sameergaikwad222/userAuthentication/issues"
+  },
+  "homepage": "https://github.com/sameergaikwad222/userAuthentication#readme",
+  "dependencies": {
+    "@fastify/autoload": "^5.8.0",
+    "@fastify/mongodb": "^8.0.0",
+    "fastify": "^4.24.3",
+    "fastify-cli": "^5.9.0",
+    "fastify-plugin": "^4.5.1",
+    "mongoose": "^8.0.0"
+  }
+}
