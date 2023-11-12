@@ -1,0 +1,10 @@
+{
+  "PORT": 3000,
+  "database": {
+    "url": "your database connection string here, along with user and pass format if any"
+  },
+  "password": {
+    "secreteKey": "secrete key for users password hashing",
+    "default": "default password here for users"
+  }
+}

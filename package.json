@@ -1,6 +1,9 @@
 {
   "name": "userauthentication",
   "version": "1.0.0",
+  "engines": {
+    "node": "v20.9.0"
+  },
   "description": "This is for User Authentication and authorization",
   "main": "index.js",
   "scripts": {
