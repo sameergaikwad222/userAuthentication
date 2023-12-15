@@ -12,8 +12,14 @@ const getFilteredUser = async (req, reply) => {
   if (!filter) {
     return reply.send({ error: "Filter is required !" });
   }
-  const users = await User.find(filter).limit(limit);
-  reply.send(users);
+  try {
+    const users = await User.find(filter).limit(limit);
+    reply.send(users);
+  } catch (error) {
+    reply.send({
+      error: "No User found",
+    });
+  }
 };
 
 const addMultipleUsers = async (req, reply) => {
