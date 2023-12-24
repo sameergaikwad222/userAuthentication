@@ -1,9 +1,10 @@
 const config = require("../../config/config.json");
 const User = require("../models/Users");
 const fastify = require("fastify");
-const crypto = require("crypto");
-const SECRETEKEY = config.password.secreteKey;
-const { validateFilter } = require("../helper/genericHelper");
+const {
+  validateFilter,
+  createHashedPassword,
+} = require("../helper/genericHelper");
 
 const getFilteredUser = async (req, reply) => {
   let filter = req.query?.filter;
@@ -27,8 +28,7 @@ const addMultipleUsers = async (req, reply) => {
   if (users && users.length > 0) {
     //Hashing Users password
     users.forEach((user) => {
-      let hash = crypto.createHmac("sha256", SECRETEKEY);
-      user.password = hash.update(user.password).digest("hex");
+      user.password = createHashedPassword(user.password);
     });
 
     try {
