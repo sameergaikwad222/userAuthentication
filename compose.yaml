@@ -1,0 +1,15 @@
+networks:
+  usermongo:
+    driver: bridge
+services:
+  mongo:
+    image: "mongo"
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "admin"
+      MONGO_INITDB_ROOT_PASSWORD: "password"
+  users:
+    image: "sameergaikwad222/usersauthentication"
+    ports:
+      - 3000:3000

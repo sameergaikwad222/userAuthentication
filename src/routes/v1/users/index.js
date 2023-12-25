@@ -1,4 +1,5 @@
 const fastify = require("fastify");
+const { checkAuthorization } = require("../../../../middleware/auth");
 const path = require("path");
 const {
   getFilteredUser,
@@ -13,14 +14,26 @@ module.exports = async function (fastify, options) {
   //GET Requests
 
   //Get All Users
-  fastify.get("/getMutiple", getUserOption, getFilteredUser);
+  fastify.get(
+    "/getMutiple",
+    getUserOption,
+    getFilteredUser
+  );
 
   //Insert Multiple Users
   fastify.put("/addMultiple", addUserOptions, addMultipleUsers);
 
   //Update Users
-  fastify.patch("/updateMultiple", updateMultipleUsers);
+  fastify.patch(
+    "/updateMultiple",
+    { preHandler: checkAuthorization },
+    updateMultipleUsers
+  );
 
   //Delete Users
-  fastify.delete("/deleteMultiple", deleteMultipleUsers);
+  fastify.delete(
+    "/deleteMultiple",
+    { preHandler: checkAuthorization },
+    deleteMultipleUsers
+  );
 };

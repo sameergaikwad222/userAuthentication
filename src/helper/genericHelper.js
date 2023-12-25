@@ -53,4 +53,9 @@ function generateAccessToken(id, secreteValue, expiry) {
   return token;
 }
 
+
+function verifyToken(token,secreteValue){
+  
+}
+
 module.exports = { validateFilter, createHashedPassword, generateAccessToken };

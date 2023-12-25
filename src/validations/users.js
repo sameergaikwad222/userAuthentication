@@ -3,6 +3,9 @@
  * @const
  */
 
+const { Schema } = require("mongoose");
+const { checkAuthorization } = require("../../middleware/auth");
+
 const headersUserSchema = {
   type: "object",
   properties: {
@@ -11,29 +14,32 @@ const headersUserSchema = {
   required: ["apikey"],
 };
 
-const postUserBodyJsonSchema = {
-  type: "object",
-  properties: {
-    firstName: { type: "string" },
-    lastName: { type: "string" },
-    age: { type: "number" },
-    password: { type: "string" },
-    locationDetails: {
-      type: "object",
-      properties: {
-        countryName: { type: "string" },
-        countryCode: { type: "string" },
-        phoneCode: { type: "string" },
-        area: { type: "string" },
+const addUserOptionBody = {
+  type: "array",
+  items: {
+    type: "object",
+    properties: {
+      firstName: { type: "string" },
+      lastName: { type: "string" },
+      age: { type: "number" },
+      password: { type: "string" },
+      locationDetails: {
+        type: "object",
+        properties: {
+          countryName: { type: "string" },
+          countryCode: { type: "string" },
+          phoneCode: { type: "string" },
+          area: { type: "string" },
+        },
       },
     },
+    required: ["firstName", "lastName", "age", "password", "locationDetails"],
   },
 };
 
 const addUserOptions = {
   schema: {
-    body: postUserBodyJsonSchema,
-    headers: headersUserSchema,
+    body: addUserOptionBody,
   },
 };
 
@@ -49,6 +55,7 @@ const getUserOption = {
     },
     headers: headersUserSchema,
   },
+  preHandler: checkAuthorization,
 };
 
 module.exports = { addUserOptions, getUserOption };
